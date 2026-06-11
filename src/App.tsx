@@ -70,20 +70,18 @@ function App() {
       ) : (
         <BootComponent
           appName="chat-de-choco-tto"
-          brandLabel="Noodle Game"
           dateText={dateText}
-          description="3分で終わる、チャット画面を操作する短編ゲーム。"
           imageAlt="chat-de-choco-tto title artwork"
           imageSrc={bootArtworkSrc}
+          notifications={[
+            {
+              title: "NOODLE",
+              timeLabel: "5分前",
+              message: "配信前チャンネルで1件の未読メッセージがあります。",
+            },
+          ]}
           onStart={() => setIsUnlocked(true)}
           timeText={timeText}
-          title={
-            <>
-              chat
-              <br />
-              de choco-tto
-            </>
-          }
         />
       )}
     </NoodlePhone>
