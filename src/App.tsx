@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import NoodlePhone from "./components/NoodlePhone";
 
 const messages = [
@@ -85,6 +85,32 @@ function LockScreen({
   timeText: string;
   onUnlock: () => void;
 }) {
+  const pointerStartYRef = useRef<number | null>(null);
+  const hasSwipedRef = useRef(false);
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    pointerStartYRef.current = event.clientY;
+    hasSwipedRef.current = false;
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (pointerStartYRef.current === null || hasSwipedRef.current) {
+      return;
+    }
+
+    const deltaY = pointerStartYRef.current - event.clientY;
+
+    if (deltaY > 64) {
+      hasSwipedRef.current = true;
+      onUnlock();
+    }
+  };
+
+  const resetPointer = () => {
+    pointerStartYRef.current = null;
+    hasSwipedRef.current = false;
+  };
+
   return (
     <>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,_rgba(255,209,102,0.34),_transparent_20%),radial-gradient(circle_at_80%_18%,_rgba(110,213,255,0.18),_transparent_24%),linear-gradient(180deg,_rgba(28,17,14,0.18)_0%,_rgba(8,14,18,0.1)_34%,_rgba(4,8,11,0.55)_100%)]" />
@@ -98,13 +124,20 @@ function LockScreen({
         </div>
       </header>
 
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-between px-5 pb-6 pt-20 text-center">
+      <div
+        className="relative z-10 flex flex-1 touch-pan-y flex-col items-center justify-between px-5 pb-6 pt-20 text-center"
+        onClick={onUnlock}
+        onPointerCancel={resetPointer}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={resetPointer}
+      >
         <div className="space-y-2">
           <p className="text-sm tracking-[0.18em] text-white/70">{dateText}</p>
           <h1 className="text-[5rem] font-black leading-none tracking-[-0.08em] text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)]">
             {timeText}
           </h1>
-          <p className="text-sm text-white/70">ホーム画面を押してロック解除</p>
+          <p className="text-sm text-white/70">タップ または 上にスワイプして開始</p>
         </div>
 
         <div className="w-full max-w-[330px] space-y-4">
@@ -121,29 +154,16 @@ function LockScreen({
               3分で終わる、チャット画面を操作する短編ゲーム。
             </p>
           </div>
-
-          <button
-            className="flex w-full items-center justify-between rounded-[28px] border border-white/14 bg-white/10 px-5 py-4 text-left text-white shadow-[0_20px_50px_rgba(0,0,0,0.28)] backdrop-blur-md transition hover:bg-white/14 active:scale-[0.99]"
-            onClick={onUnlock}
-            type="button"
-          >
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.28em] text-[#a8dfc4]">
-                Start
-              </p>
-              <p className="mt-1 text-base font-semibold text-[#fff8dc]">
-                ホーム画面を押す
-              </p>
-            </div>
-            <span className="rounded-full bg-[#f4c15d] px-4 py-2 text-xs font-bold text-[#2b2210]">
-              Unlock
-            </span>
-          </button>
         </div>
 
         <div className="flex flex-col items-center gap-3">
-          <div className="h-1.5 w-28 rounded-full bg-white/25" />
-          <div className="h-14 w-14 rounded-full border border-white/20 bg-white/10 shadow-[inset_0_1px_10px_rgba(255,255,255,0.06)]" />
+          <div className="flex flex-col items-center gap-2 rounded-full border border-white/12 bg-white/8 px-5 py-3 shadow-[0_16px_40px_rgba(0,0,0,0.2)] backdrop-blur-md">
+            <div className="h-1.5 w-16 rounded-full bg-white/60" />
+            <p className="text-[11px] uppercase tracking-[0.28em] text-white/70">
+              Swipe Up
+            </p>
+          </div>
+          <p className="text-xs text-white/55">Tap anywhere to start</p>
         </div>
       </div>
     </>
