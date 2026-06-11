@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+  <rect x="36" y="48" width="184" height="128" rx="28" fill="#132027" stroke="rgba(255,255,255,0.16)"/>
+  <rect x="58" y="74" width="64" height="14" rx="7" fill="#A8DFC4"/>
+  <rect x="58" y="102" width="96" height="38" rx="18" fill="#F4C15D"/>
+  <rect x="118" y="146" width="80" height="36" rx="18" fill="#1B2A30"/>
+  <text x="128" y="220" fill="#FFF7DB" font-family="Avenir Next, Hiragino Sans, sans-serif" font-size="34" font-weight="800" text-anchor="middle">chat</text>
+  <defs>
+    <linearGradient id="bg" x1="128" y1="0" x2="128" y2="256" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A1E18"/>
+      <stop offset=".52" stop-color="#193041"/>
+      <stop offset="1" stop-color="#10201F"/>
+    </linearGradient>
+  </defs>
+</svg>

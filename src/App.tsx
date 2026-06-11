@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
+import appChatIconSrc from "./assets/app-chat-de-choco-tto.svg";
 import bootArtworkSrc from "./assets/boot-chat-de-choco-tto.svg";
 import BootComponent from "./components/BootComponent";
+import LauncherComponent from "./components/LauncherComponent";
 import NoodlePhone from "./components/NoodlePhone";
 
 const messages = [
@@ -31,7 +33,7 @@ const messages = [
 ] as const;
 
 function App() {
-  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [screen, setScreen] = useState<"boot" | "launcher" | "game">("boot");
   const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
@@ -65,8 +67,25 @@ function App() {
 
   return (
     <NoodlePhone>
-      {isUnlocked ? (
+      {screen === "game" ? (
         <GameScreen />
+      ) : screen === "launcher" ? (
+        <LauncherComponent
+          apps={[
+            {
+              id: "chat-de-choco-tto",
+              iconSrc: appChatIconSrc,
+              title: "chat-de-choco-tto",
+              notificationCount: 2,
+            },
+          ]}
+          onLaunch={(appId) => {
+            console.log("launch app", appId);
+            if (appId === "chat-de-choco-tto") {
+              setScreen("game");
+            }
+          }}
+        />
       ) : (
         <BootComponent
           appName="chat-de-choco-tto"
@@ -89,7 +108,7 @@ function App() {
           ]}
           onStart={(action) => {
             console.log("boot action", action);
-            setIsUnlocked(true);
+            setScreen("launcher");
           }}
           timeText={timeText}
         />
