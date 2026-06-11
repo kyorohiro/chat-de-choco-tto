@@ -1,0 +1,99 @@
+:root {
+  color: #fff8dc;
+  background:
+    radial-gradient(circle at top, rgba(244, 204, 102, 0.2), transparent 40%),
+    linear-gradient(160deg, #101718 0%, #20303a 45%, #13211b 100%);
+  font-family: "Avenir Next", "Hiragino Sans", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.shell {
+  min-height: 100vh;
+  padding: 32px;
+  display: grid;
+  gap: 24px;
+}
+
+.hero {
+  display: grid;
+  gap: 8px;
+  max-width: 720px;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #a6d4bf;
+  font-size: 0.82rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  line-height: 0.95;
+}
+
+.lead {
+  margin: 0;
+  max-width: 48rem;
+  color: #d9e7dc;
+}
+
+.playfield {
+  display: grid;
+}
+
+.panel {
+  padding: 16px;
+  border: 1px solid rgba(255, 248, 220, 0.18);
+  border-radius: 24px;
+  background: rgba(10, 14, 18, 0.45);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(12px);
+}
+
+.panel-label {
+  margin-bottom: 12px;
+  color: #b7d7ca;
+  font-size: 0.9rem;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 248, 220, 0.12);
+  background: #142124;
+}
+
+@media (max-width: 720px) {
+  .shell {
+    padding: 20px;
+  }
+
+  .panel {
+    padding: 12px;
+    border-radius: 18px;
+  }
+}
