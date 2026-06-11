@@ -1,6 +1,7 @@
 import { useRef, type PointerEvent } from "react";
 
 export type BootNotification = {
+  id: string;
   iconSrc?: string;
   iconAlt?: string;
   title: string;
@@ -8,11 +9,16 @@ export type BootNotification = {
   message: string;
 };
 
+export type BootStartAction =
+  | { type: "tap" }
+  | { type: "swipe-up" }
+  | { type: "notification"; notificationId: string };
+
 type BootComponentProps = {
   appName: string;
   dateText: string;
   timeText: string;
-  onStart: () => void;
+  onStart: (action: BootStartAction) => void;
   imageSrc?: string;
   imageAlt?: string;
   notifications?: BootNotification[];
@@ -44,7 +50,7 @@ function BootComponent({
 
     if (deltaY > 64) {
       hasSwipedRef.current = true;
-      onStart();
+      onStart({ type: "swipe-up" });
     }
   };
 
@@ -77,7 +83,7 @@ function BootComponent({
 
       <div
         className="relative z-10 flex flex-1 touch-pan-y flex-col px-5 pb-6 pt-20 text-center"
-        onClick={onStart}
+        onClick={() => onStart({ type: "tap" })}
         onPointerCancel={resetPointer}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
@@ -95,9 +101,17 @@ function BootComponent({
         {notifications ? (
           <div className="mt-6 flex justify-center">
             <div className="flex w-full max-w-[344px] flex-col gap-2">
-              {notifications.map((notification, index) => (
-                <div
-                  key={`${notification.title}-${notification.timeLabel}-${index}`}
+              {notifications.map((notification) => (
+                <button
+                  key={notification.id}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onStart({
+                      type: "notification",
+                      notificationId: notification.id,
+                    });
+                  }}
+                  type="button"
                   className="rounded-[24px] border border-white/12 bg-black/30 p-3 text-left shadow-[0_24px_80px_rgba(0,0,0,0.34)] backdrop-blur-xl"
                 >
                   <div className="flex items-start gap-3">
@@ -127,7 +141,7 @@ function BootComponent({
                       </p>
                     </div>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>

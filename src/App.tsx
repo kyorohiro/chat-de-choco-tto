@@ -75,12 +75,22 @@ function App() {
           imageSrc={bootArtworkSrc}
           notifications={[
             {
+              id: "manager-unread",
               title: "NOODLE",
               timeLabel: "5分前",
               message: "配信前チャンネルで1件の未読メッセージがあります。",
             },
+            {
+              id: "fan-reply",
+              title: "Fan_204",
+              timeLabel: "12:00",
+              message: "カップヌードルできる前に返事ほしい",
+            },
           ]}
-          onStart={() => setIsUnlocked(true)}
+          onStart={(action) => {
+            console.log("boot action", action);
+            setIsUnlocked(true);
+          }}
           timeText={timeText}
         />
       )}
