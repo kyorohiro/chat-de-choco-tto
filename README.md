@@ -48,7 +48,7 @@
 
 ## 開発メモ
 
-このフォルダは `Tauri + Vite + TypeScript` の最小ゲーム開発用プロジェクトとして初期化しています。
+このフォルダは `Tauri + Vite + React + Tailwind CSS v4 + TypeScript` の最小ゲーム開発用プロジェクトとして初期化しています。
 
 ## セットアップ
 
@@ -78,7 +78,7 @@ npm run tauri build
 
 ## 構成
 
-- `src/` : フロントエンド。今はゲーム用の簡単な canvas プレースホルダー入り
+- `src/` : React フロントエンド。今はチャットゲーム向けの最初の UI プレースホルダー入り
 - `src-tauri/` : Rust / Tauri 側
 
-最初のゲーム画面は [src/main.ts](/Users/kyorohiro/development8/chat-de-choco-tto/src/main.ts) から差し替えていけます。
+最初のゲーム画面は [src/App.tsx](/Users/kyorohiro/development8/chat-de-choco-tto/src/App.tsx:1) から差し替えていけます。
