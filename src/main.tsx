@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./style.css";
+import "./App.css";
+import { DialogProvider } from "./useDialog";
 
 const rootElement = document.querySelector<HTMLDivElement>("#app");
 
@@ -11,6 +12,8 @@ if (!rootElement) {
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <App />
+    <DialogProvider>
+      <App />
+    </DialogProvider>
   </React.StrictMode>,
 );
