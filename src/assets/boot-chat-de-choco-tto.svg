@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#0E1418"/>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <circle cx="171" cy="164" r="173" fill="#F6C86A" fill-opacity=".28"/>
+  <circle cx="639" cy="220" r="156" fill="#7FDBFF" fill-opacity=".16"/>
+  <circle cx="417" cy="839" r="281" fill="#0D2431" fill-opacity=".78"/>
+  <rect x="88" y="110" width="624" height="780" rx="44" fill="#111A1F" fill-opacity=".62" stroke="rgba(255,255,255,0.18)"/>
+  <g filter="url(#shadow)">
+    <rect x="144" y="186" width="512" height="420" rx="32" fill="#10161A"/>
+    <rect x="144.5" y="186.5" width="511" height="419" rx="31.5" stroke="#F6E3AC" stroke-opacity=".12"/>
+  </g>
+  <rect x="190" y="246" width="188" height="20" rx="10" fill="#A8DFC4"/>
+  <rect x="190" y="290" width="274" height="88" rx="24" fill="#F4C15D"/>
+  <rect x="334" y="410" width="224" height="100" rx="26" fill="#1B2A30"/>
+  <rect x="212" y="538" width="278" height="22" rx="11" fill="#F7F0DC" fill-opacity=".72"/>
+  <text x="400" y="714" fill="#FFD98F" font-family="Avenir Next, Hiragino Sans, sans-serif" font-size="28" font-weight="700" letter-spacing="6" text-anchor="middle">NOODLE GAME</text>
+  <text x="400" y="780" fill="#FFF7DB" font-family="Avenir Next, Hiragino Sans, sans-serif" font-size="78" font-weight="800" text-anchor="middle">chat</text>
+  <text x="400" y="848" fill="#FFF7DB" font-family="Avenir Next, Hiragino Sans, sans-serif" font-size="58" font-weight="800" text-anchor="middle">de choco-tto</text>
+  <defs>
+    <linearGradient id="bg" x1="400" y1="0" x2="400" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A1E18"/>
+      <stop offset=".48" stop-color="#17222F"/>
+      <stop offset="1" stop-color="#0C1618"/>
+    </linearGradient>
+    <filter id="shadow" x="114" y="166" width="572" height="480" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="10"/>
+      <feGaussianBlur stdDeviation="15"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+  </defs>
+</svg>
