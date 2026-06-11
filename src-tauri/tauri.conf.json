@@ -13,9 +13,11 @@
     "windows": [
       {
         "title": "chat-de-choco-tto",
-        "width": 1280,
-        "height": 800,
-        "resizable": true
+        "width": 460,
+        "height": 920,
+        "resizable": false,
+        "maximizable": false,
+        "fullscreen": false
       }
     ],
     "security": {

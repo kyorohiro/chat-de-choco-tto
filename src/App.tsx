@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import NoodlePhone from "./components/NoodlePhone";
 
 const messages = [
   {
@@ -61,25 +62,17 @@ function App() {
   );
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(244,193,93,0.16),_transparent_28%),linear-gradient(180deg,_#17120f_0%,_#161c28_48%,_#0d1517_100%)] px-0 py-0 text-[#fff8dc] sm:px-6 sm:py-8">
-      <div className="mx-auto flex min-h-[100dvh] items-center justify-center">
-        <div className="w-full sm:max-w-[460px]">
-          <div className="overflow-hidden bg-[#05070b] shadow-[0_40px_120px_rgba(0,0,0,0.45)] sm:rounded-[42px] sm:border sm:border-white/10 sm:p-3">
-            <div className="safe-top-pad relative flex min-h-[100dvh] flex-col overflow-hidden bg-[#091117] sm:min-h-[860px] sm:rounded-[34px]">
-              {isUnlocked ? (
-                <GameScreen />
-              ) : (
-                <LockScreen
-                  dateText={dateText}
-                  onUnlock={() => setIsUnlocked(true)}
-                  timeText={timeText}
-                />
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+    <NoodlePhone>
+      {isUnlocked ? (
+        <GameScreen />
+      ) : (
+        <LockScreen
+          dateText={dateText}
+          onUnlock={() => setIsUnlocked(true)}
+          timeText={timeText}
+        />
+      )}
+    </NoodlePhone>
   );
 }
 
